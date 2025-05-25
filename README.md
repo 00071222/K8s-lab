@@ -36,6 +36,7 @@ docker run hello-world
 ```
 
 ## Instalar kubectl
+
 ```
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -44,6 +45,7 @@ sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null
 sudo apt-get update
 ```
+
 Con el repositorio añadido, instalamos el paquete kubectl
 ```
 sudo apt-get install -y kubectl
