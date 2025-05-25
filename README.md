@@ -76,3 +76,103 @@ kubectl get nodes listará los nodos del clúster
 ```
 kubectl get nodes
 ```
+
+# Deploy
+
+
+## Mongo
+```
+cd ~/k8s-lab/mongo 
+```
+
+### Mongo-config
+```
+nano mongo-config.yaml
+```
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  DATABASE_NAME: mydatabase
+  DATABASE_HOST: mongo-service
+```
+```
+kubectl apply -f mongo-config.yaml
+```
+### Mongo-secret
+```
+nano mongo-secret.yaml
+```
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-secret
+type: Opaque
+stringData:
+  username: root
+  password: example123
+```
+```
+kubectl apply -f mongo-secret.yaml
+```
+### Mongo-service
+```
+nano mongo-service.yaml
+```
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP
+```
+```
+kubectl apply -f mongo-service.yaml
+```
+## Web
+```
+cd ~/k8s-lab/webapp 
+```
+
+### Dockerfile
+```
+nano Dockerfile 
+```
+```
+FROM node:20
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD [ "npm", "start" ]
+```
+
+### Webapp-service
+```
+nano webapp-service.yaml
+```
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  type: NodePort
+  selector:
+    app: webapp
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30080
+```
