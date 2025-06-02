@@ -86,17 +86,6 @@ kubectl get nodes
 ```
 cd ~/K8s-lab/mongo 
 ```
-
-### Mongo-config
-```
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mongo-config
-data:
-  DATABASE_NAME: mydatabase
-  DATABASE_HOST: mongo-service
-```
 ### Mongo-secret
 ```
 apiVersion: v1
@@ -107,6 +96,16 @@ type: Opaque
 stringData:
   username: root
   password: example123
+```
+### Mongo-config
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  DATABASE_NAME: mydatabase
+  DATABASE_HOST: mongo-service
 ```
 ### Mongo-service
 ```
