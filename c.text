@@ -89,6 +89,9 @@ cd ~/k8s-lab/mongo
 
 ### Mongo-config
 ```
+nano mongo-config.yaml
+```
+```
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -97,7 +100,13 @@ data:
   DATABASE_NAME: mydatabase
   DATABASE_HOST: mongo-service
 ```
+```
+kubectl apply -f mongo-config.yaml
+```
 ### Mongo-secret
+```
+nano mongo-secret.yaml
+```
 ```
 apiVersion: v1
 kind: Secret
@@ -108,7 +117,13 @@ stringData:
   username: root
   password: example123
 ```
+```
+kubectl apply -f mongo-secret.yaml
+```
 ### Mongo-service
+```
+nano mongo-service.yaml
+```
 ```
 apiVersion: v1
 kind: Service
@@ -123,12 +138,18 @@ spec:
       targetPort: 27017
   type: ClusterIP
 ```
+```
+kubectl apply -f mongo-service.yaml
+```
 ## Web
 ```
 cd ~/k8s-lab/webapp 
 ```
 
 ### Dockerfile
+```
+nano Dockerfile 
+```
 ```
 FROM node:20
 WORKDIR /app
@@ -140,6 +161,9 @@ CMD [ "npm", "start" ]
 ```
 
 ### Webapp-service
+```
+nano webapp-service.yaml
+```
 ```
 apiVersion: v1
 kind: Service
