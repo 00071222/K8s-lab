@@ -68,7 +68,7 @@ minikube config set driver docker
 ```
 Iniciar Minikube
 ```
-minikube start --driver=docker
+minikube start
 ```
 kubectl cluster-info muestra las direcciones del plano de control (API server) y servicios core del clúster.
 ```
@@ -84,7 +84,7 @@ kubectl get nodes
 
 ## Mongo
 ```
-cd ~/k8s-lab/mongo 
+cd ~/K8s-lab/mongo 
 ```
 
 ### Mongo-config
@@ -125,7 +125,7 @@ spec:
 ```
 ## Web
 ```
-cd ~/k8s-lab/webapp 
+cd ~/K8s-lab/webapp 
 ```
 
 ### Dockerfile
